@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Amazing Wizard</title>
+<meta name="description" content="Amazing Wizard — เกมพ่อมด AFK สะสมพลังเวทย์ ผจญภัยหาสมบัติ สไตล์พิกเซลอาร์ต">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="bg-canvas"></canvas>
+
+  <div id="layout">
+    <!-- Header / Logo -->
+    <div id="logo-wrap">
+      <div class="eyebrow">ARCANE AFK RPG</div>
+      <h1 id="title">
+        <span class="amazing">Amazing</span>
+        Wizard
+      </h1>
+      <div id="title-underline"></div>
+    </div>
+
+    <!-- Signature sprite -->
+    <div id="sprite-wrap">
+      <canvas id="wizard-canvas"></canvas>
+      <div id="power-caption">⚡ พลังเวทย์สะสมอัตโนมัติทุกวินาที</div>
+    </div>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <button class="menu-btn primary" id="btn-start">
+        <span class="icon">⚔</span>
+        <span>
+          <span class="label-main">เริ่มเกม</span>
+          <span class="label-sub">START ADVENTURE</span>
+        </span>
+        <span class="arrow">▶</span>
+      </button>
+
+      <button class="menu-btn" id="btn-settings">
+        <span class="icon">⚙</span>
+        <span>
+          <span class="label-main">การตั้งค่า</span>
+          <span class="label-sub">SETTINGS</span>
+        </span>
+        <span class="arrow">▶</span>
+      </button>
+
+      <button class="menu-btn" id="btn-info">
+        <span class="icon">✦</span>
+        <span>
+          <span class="label-main">ข้อมูลเกม</span>
+          <span class="label-sub">GAME INFO</span>
+        </span>
+        <span class="arrow">▶</span>
+      </button>
+    </nav>
+
+    <footer id="version">v0.1.0 — PROTOTYPE</footer>
+  </div>
+
+  <!-- Modal layer for Settings / Info -->
+  <div id="modal-layer">
+    <div class="modal" id="modal-body"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
