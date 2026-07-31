@@ -1,0 +1,290 @@
+/* =========================================================
+   AMAZING WIZARD — Main Menu Styles
+   Design language: cozy pixel-fantasy (Kairosoft-inspired)
+   ========================================================= */
+
+:root {
+  /* --- Color tokens --- */
+  --sky-top:      #241a4a;
+  --sky-bottom:   #0c0720;
+  --panel-bg:     #2c2050;
+  --panel-edge:   #6a4fc7;
+  --gold:         #f4c95d;
+  --gold-deep:    #c8912f;
+  --magic-purple: #9b6bf2;
+  --cream:        #f6ecd9;
+  --cream-dim:    #cfc2e6;
+  --shadow-hard:  #140b2b;
+
+  --font-display: 'Press Start 2P', monospace;
+  --font-body:    'Silkscreen', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+  font-family: var(--font-body);
+  image-rendering: pixelated;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   PORTRAIT GAME FRAME
+   Fills the entire screen, no side letterboxing.
+   ========================================================= */
+#game-root {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--sky-bottom);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+}
+.scene.active { display: flex; }
+
+/* =========================================================
+   BACKGROUND LAYERS
+   ========================================================= */
+.bg-layer { position: absolute; inset: 0; }
+
+.bg-sky {
+  background: linear-gradient(180deg, var(--sky-top) 0%, #3a2a66 40%, var(--sky-bottom) 100%);
+}
+
+.bg-stars {
+  background-image:
+    radial-gradient(1.5px 1.5px at 10% 15%, var(--cream) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 80% 10%, var(--cream) 100%, transparent),
+    radial-gradient(1px 1px at 35% 25%, var(--gold) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 60% 35%, var(--cream) 100%, transparent),
+    radial-gradient(1px 1px at 90% 40%, var(--cream) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 20% 45%, var(--gold) 100%, transparent),
+    radial-gradient(1px 1px at 50% 8%, var(--cream) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 75% 55%, var(--cream) 100%, transparent);
+  animation: twinkle 3s ease-in-out infinite alternate;
+  opacity: 0.8;
+}
+@keyframes twinkle {
+  from { opacity: 0.4; }
+  to   { opacity: 0.9; }
+}
+
+.bg-vignette {
+  background: radial-gradient(ellipse at 50% 40%, transparent 40%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+
+/* =========================================================
+   LOGO ZONE
+   ========================================================= */
+.logo-zone {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 9% 6% 2%;
+}
+
+.logo-wrap { position: relative; display: inline-block; }
+
+/* ถ้ามีไฟล์ assets/images/logo.png จริง จะแสดงรูปแทนข้อความอัตโนมัติ */
+.logo-img {
+  display: none;
+  max-width: 88%;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}
+.logo-img[data-loaded="true"] { display: inline-block; }
+.logo-img[data-loaded="true"] + .logo-text { display: none; }
+
+.logo-text {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+.logo-line1, .logo-line2 {
+  display: block;
+  font-size: clamp(20px, 6.5vw, 30px);
+  color: var(--gold);
+  text-shadow:
+    3px 3px 0 var(--shadow-hard),
+    0 0 18px rgba(244, 201, 93, 0.55);
+}
+.logo-line2 {
+  color: var(--cream);
+  text-shadow:
+    3px 3px 0 var(--shadow-hard),
+    0 0 18px rgba(155, 107, 242, 0.65);
+}
+
+.logo-sub {
+  margin: 10px 0 0;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--cream-dim);
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HERO ZONE (พื้นที่โชว์ตัวละคร — เตรียมไว้สำหรับ Asset จริง)
+   ========================================================= */
+.hero-zone {
+  position: relative;
+  z-index: 2;
+  flex: 0 1 auto;
+  min-height: 8vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-platform {
+  position: absolute;
+  bottom: 8%;
+  width: 46%;
+  height: 14px;
+  background: radial-gradient(ellipse at center, rgba(155,107,242,0.5) 0%, transparent 75%);
+  filter: blur(1px);
+}
+
+.hero-sprite {
+  display: none;
+  position: relative;
+  z-index: 1;
+  max-height: 62%;
+  margin-bottom: 8%;
+  image-rendering: pixelated;
+  animation: float 2.4s ease-in-out infinite;
+}
+.hero-sprite[data-loaded="true"] { display: block; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+.hero-sparkle {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
+  animation: sparkle 2s ease-in-out infinite;
+}
+.hero-sparkle.s1 { bottom: 30%; left: 32%; animation-delay: 0s; }
+.hero-sparkle.s2 { bottom: 45%; right: 28%; animation-delay: 0.6s; }
+.hero-sparkle.s3 { bottom: 20%; right: 40%; animation-delay: 1.2s; }
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+
+/* =========================================================
+   MENU BUTTONS
+   ========================================================= */
+.menu-zone {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 8%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.menu-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 12px;
+  font-family: var(--font-display);
+  font-size: clamp(12px, 3.6vw, 15px);
+  color: var(--cream);
+  background: var(--panel-bg);
+  border: none;
+  border-radius: 4px;
+  box-shadow:
+    0 4px 0 var(--shadow-hard),
+    inset 0 0 0 3px var(--panel-edge),
+    inset 0 -6px 0 rgba(0,0,0,0.25);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+}
+
+.menu-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 0 0 var(--shadow-hard),
+    inset 0 0 0 3px var(--panel-edge),
+    inset 0 -3px 0 rgba(0,0,0,0.25);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #7a4fe0 0%, #5a35b0 100%);
+  box-shadow:
+    0 4px 0 #3d2277,
+    inset 0 0 0 3px var(--gold),
+    inset 0 -6px 0 rgba(0,0,0,0.2);
+}
+.btn-primary:active {
+  box-shadow:
+    0 0 0 #3d2277,
+    inset 0 0 0 3px var(--gold),
+    inset 0 -3px 0 rgba(0,0,0,0.2);
+}
+
+.btn-icon { font-size: 1.1em; color: var(--gold); }
+.btn-primary .btn-icon { color: #fff8e0; }
+
+.version-tag {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 9px;
+  color: var(--cream-dim);
+  opacity: 0.6;
+  padding-bottom: 10px;
+  font-family: var(--font-body);
+}
+
+/* =========================================================
+   PLACEHOLDER SUB-SCENES
+   ========================================================= */
+.placeholder-scene {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--cream);
+  text-align: center;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+  padding: 20px;
+}
+.placeholder-scene h2 {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 18px;
+}
+.back-btn { max-width: 200px; }
