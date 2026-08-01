@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Amazing Wizard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+  <!-- กรอบเกมแนวตั้ง (Portrait Game Frame) -->
+  <div id="game-root">
+
+    <!-- ฉาก: Main Menu -->
+    <section id="scene-mainmenu" class="scene active">
+
+      <!-- พื้นหลัง + ดาว/ฝุ่นเวทมนตร์ -->
+      <div class="bg-layer bg-sky"></div>
+      <div class="bg-layer bg-stars" id="starLayer"></div>
+      <div class="bg-layer bg-particles" id="particleLayer"></div>
+      <div class="bg-layer bg-vignette"></div>
+
+      <!-- โซนโลโก้/ชื่อเกม -->
+      <header class="logo-zone">
+        <!-- ถ้ามีไฟล์โลโก้จริง ให้ใส่ที่ assets/images/logo.png
+             แล้วสลับมาใช้ <img> แทน .logo-text ได้เลย -->
+        <div class="logo-wrap">
+          <span class="logo-glint g1"></span>
+          <span class="logo-glint g2"></span>
+          <span class="logo-glint g3"></span>
+          <div class="magic-orb"></div>
+          <img src="assets/images/logo.png" alt="Amazing Wizard" class="logo-img" id="logoImg">
+          <h1 class="logo-text" id="logoText">
+            <span class="logo-line1">AMAZING</span>
+            <span class="logo-line2">WIZARD</span>
+          </h1>
+        </div>
+        <p class="logo-sub">AFK Wizard Adventure</p>
+      </header>
+
+      <!-- โซนตัวละคร (เตรียมไว้สำหรับอนาคต) -->
+      <div class="hero-zone" id="heroZone">
+        <div class="hero-platform"></div>
+        <img src="assets/images/wizard_idle.png" alt="" class="hero-sprite" id="heroSprite">
+        <div class="hero-sparkle s1"></div>
+        <div class="hero-sparkle s2"></div>
+        <div class="hero-sparkle s3"></div>
+      </div>
+
+      <!-- โซนปุ่มเมนู -->
+      <nav class="menu-zone">
+        <button class="menu-btn btn-primary" id="btnStart" type="button">
+          <span class="btn-icon">⚔</span>
+          <span class="btn-label">เริ่มเกม</span>
+        </button>
+        <button class="menu-btn btn-secondary" id="btnSettings" type="button">
+          <span class="btn-icon">⚙</span>
+          <span class="btn-label">การตั้งค่า</span>
+        </button>
+        <button class="menu-btn btn-secondary" id="btnInfo" type="button">
+          <span class="btn-icon">ℹ</span>
+          <span class="btn-label">ข้อมูลเกม</span>
+        </button>
+      </nav>
+
+      <footer class="version-tag">
+        v.0.1 beta test
+        <span class="credit">©S41F4H 2026</span>
+      </footer>
+    </section>
+
+    <!-- ฉากอื่นๆ (ตั้งค่า / ข้อมูลเกม) จะถูกเติมภายหลัง -->
+    <section id="scene-settings" class="scene">
+      <div class="placeholder-scene">
+        <h2>การตั้งค่า</h2>
+        <p>(ยังไม่เปิดใช้งาน)</p>
+        <button class="menu-btn btn-secondary back-btn" data-back>⟵ กลับ</button>
+      </div>
+    </section>
+
+    <section id="scene-info" class="scene">
+      <div class="placeholder-scene">
+        <h2>ข้อมูลเกม</h2>
+        <p>Amazing Wizard<br>เกม AFK พ่อมดผจญภัย</p>
+        <button class="menu-btn btn-secondary back-btn" data-back>⟵ กลับ</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="main.js?v=2"></script>
+</body>
+</html>
